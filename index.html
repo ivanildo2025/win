@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas de Manutenção do Windows</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0067b8 0%, #005da6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h1 i {
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #0067b8;
+        }
+        
+        h2 {
+            color: #0067b8;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaeaea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            color: #005da6;
+        }
+        
+        .category {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-header {
+            background-color: #0067b8;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .category-header h3 {
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tools-container {
+            padding: 20px;
+        }
+        
+        .tool {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        .tool:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .tool:last-child {
+            border-bottom: none;
+        }
+        
+        .tool-info {
+            flex: 1;
+        }
+        
+        .tool-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #005da6;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tool-desc {
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .tool-features {
+            font-size: 0.9rem;
+            color: #777;
+            font-style: italic;
+        }
+        
+        .tool-link {
+            background-color: #0067b8;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+        
+        .tool-link:hover {
+            background-color: #005191;
+        }
+        
+        .windows-builtin {
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .windows-builtin .tool-name {
+            color: #2E7D32;
+        }
+        
+        .tip-box {
+            background-color: #e8f4fc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid #0067b8;
+        }
+        
+        .tip-box h3 {
+            color: #0067b8;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .tool {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .tool-link {
+                margin-left: 0;
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .badge {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+        
+        .cmd-badge {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-tools"></i> Ferramentas de Manutenção do Windows</h1>
+        <p class="subtitle">Uma coleção de utilitários essenciais para otimização, diagnóstico e reparo do sistema</p>
+    </header>
+    
+    <div class="intro">
+        <p>Esta página reúne ferramentas úteis para manutenção, diagnóstico e otimização do sistema Windows. As ferramentas estão organizadas por categoria para facilitar a localização. Sempre crie um <strong>ponto de restauração</strong> antes de usar ferramentas que alteram configurações do sistema.</p>
+    </div>
+    
+    <div class="category">
+        <div class="category-header">
+            <h3><i class="fas fa-broom"></i> Limpeza e Otimização</h3>
+            <span>4 ferramentas</span>
+        </div>
+        <div class="tools-container">
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-trash-alt"></i> CCleaner
+                    </div>
+                    <div class="tool-desc">Limpa arquivos temporários, cache e entradas inválidas do registro para liberar espaço e proteger a privacidade.</div>
+                    <div class="tool-features">Versões gratuita e paga; limpa histórico e cookies dos navegadores; muito popular entre profissionais de TI.</div>
+                </div>
+                <a href="https://www.ccleaner.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-hdd"></i> Defraggler
+                    </div>
+                    <div class="tool-desc">Desfragmenta discos rígidos (HDDs) organizando arquivos e espaço livre para melhor desempenho.</div>
+                    <div class="tool-features">Pode desfragmentar arquivos individuais; desenvolvido pela Piriform (mesma empresa do CCleaner).</div>
+                </div>
+                <a href="https://www.ccleaner.com/defraggler" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+            
+            <div class="tool windows-builtin">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fab fa-windows"></i> Limpeza de Disco (Disk Cleanup)
+                        <span class="badge">Integrado ao Windows</span>
+                    </div>
+                    <div class="tool-desc">Ferramenta nativa do Windows que remove arquivos temporários, cache e resíduos de atualizações.</div>
+                    <div class="tool-features">Segura e fácil de usar; inclui opção "Limpar arquivos do sistema" para liberar mais espaço.</div>
+                </div>
+                <a href="https://support.microsoft.com/pt-br/windows/liberar-espa%C3%A7o-para-instala%C3%A7%C3%B5es-do-windows-em-windows-10-a31f3575-9763-497e-9f4b-6a6c6e6ea2a6" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Mais Informações
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-wrench"></i> Tweaking.com - Windows Repair
+                    </div>
+                    <div class="tool-desc">Kit de ferramentas completo para corrigir diversos problemas do Windows, desde erros de registro até falhas em atualizações.</div>
+                    <div class="tool-features">Poderoso, mas deve ser usado com cautela; recomenda-se criar ponto de restauração antes de usar.</div>
+                </div>
+                <a href="https://www.tweaking.com/content/page/windows_repair_all_in_one.html" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="category">
+        <div class="category-header">
+            <h3><i class="fas fa-stethoscope"></i> Diagnóstico do Sistema</h3>
+            <span>6 ferramentas</span>
+        </div>
+        <div class="tools-container">
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-microchip"></i> CPU-Z
+                    </div>
+                    <div class="tool-desc">Exibe informações detalhadas sobre os principais componentes de hardware do sistema.</div>
+                    <div class="tool-features">Mostra dados da CPU, placa-mãe e memória (RAM); fácil de instalar e usar.</div>
+                </div>
+                <a href="https://www.cpuid.com/softwares/cpu-z.html" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-desktop"></i> GPU-Z
+                    </div>
+                    <div class="tool-desc">Fornece informações detalhadas sobre a placa de vídeo e GPU do sistema.</div>
+                    <div class="tool-features">Essencial para verificar a autenticidade e especificações de uma placa de vídeo; mostra sensores em tempo real.</div>
+                </div>
+                <a href="https://www.techpowerup.com/gpuz/" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-cogs"></i> Microsoft Sysinternals Suite
+                    </div>
+                    <div class="tool-desc">Kit de ferramentas avançado da Microsoft para gerenciamento e solução de problemas profundos do sistema.</div>
+                    <div class="tool-features">Inclui Autoruns (gerencia inicialização), Process Explorer (gerenciador de tarefas avançado) e PsTools (administração remota).</div>
+                </div>
+                <a href="https://docs.microsoft.com/pt-br/sysinternals/" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+            
+            <div class="tool windows-builtin">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fab fa-windows"></i> Visualizador de Eventos (Event Viewer)
+                        <span class="badge">Integrado ao Windows</span>
+                    </div>
+                    <div class="tool-desc">Ferramenta nativa que registra todos os eventos, erros e avisos do sistema para solução de problemas.</div>
+                    <div class="tool-features">Fornece códigos de erro (ex: 0x000...) para pesquisar soluções na internet.</div>
+                </div>
+                <a href="https://support.microsoft.com/pt-br/windows/usando-o-visualizador-de-eventos-2628c3a2-f4a0-4f64-84a7-f5c5ea84fae6" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Mais Informações
+                </a>
+            </div>
+            
+            <div class="tool windows-builtin">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fab fa-windows"></i> Monitor de Recursos (Resource Monitor)
+                        <span class="badge">Integrado ao Windows</span>
+                    </div>
+                    <div class="tool-desc">Ferramenta nativa que fornece dados em tempo real sobre uso de CPU, memória, disco e rede.</div>
+                    <div class="tool-features">Mais avançado que o Gerenciador de Tarefas; ajuda a identificar processos que consomem muitos recursos.</div>
+                </div>
+                <a href="https://support.microsoft.com/pt-br/topic/como-usar-o-monitor-de-recursos-83a6e57d-2d13-5c81-1121-48e3032c2e2d" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Mais Informações
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-tachometer-alt"></i> HWiNFO
+                    </div>
+                    <div class="tool-desc">Ferramenta abrangente de diagnóstico e monitoramento de hardware do sistema.</div>
+                    <div class="tool-features">Detalha todos os componentes do sistema; monitora temperaturas, voltagens e frequências em tempo real.</div>
+                </div>
+                <a href="https://www.hwinfo.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="category">
+        <div class="category-header">
+            <h3><i class="fas fa-hdd"></i> Discos e Armazenamento</h3>
+            <span>4 ferramentas</span>
+        </div>
+        <div class="tools-container">
+            <div class="tool windows-builtin">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fab fa-windows"></i> CHKDSK (Check Disk)
+                        <span class="badge cmd-badge">Comando</span>
+                    </div>
+                    <div class="tool-desc">Comando nativo do Windows que verifica a integridade de um disco e repara erros do sistema de arquivos.</div>
+                    <div class="tool-features">Use parâmetros como /f para corrigir erros e /r para recuperar dados de setores defeituosos.</div>
+                </div>
+                <a href="https://support.microsoft.com/pt-br/windows/usando-a-ferramenta-de-verifica%C3%A7%C3%A3o-de-disco-do-windows-10-49d8647c-5e41-47e4-8d5a-73c9a68f9b3c" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Mais Informações
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-heartbeat"></i> HDD Scan
+                    </div>
+                    <div class="tool-desc">Ferramenta gratuita para monitorar a saúde do disco rígido (dados S.M.A.R.T.), temperatura e realizar testes de superfície.</div>
+                    <div class="tool-features">Interface simples; versão portátil disponível; útil para prever falhas do disco.</div>
+                </div>
+                <a href="http://hddscan.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-ambulance"></i> TestDisk
+                    </div>
+                    <div class="tool-desc">Ferramenta poderosa de código aberto para recuperar partições perdidas e corrigir problemas de inicialização.</div>
+                    <div class="tool-features">Funciona com vários sistemas de arquivos; pode reparar tabelas de partição; baseada em linha de comando.</div>
+                </div>
+                <a href="https://www.cgsecurity.org/wiki/TestDisk" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-compress-arrows-alt"></i> Paragon Hard Disk Manager
+                    </div>
+                    <div class="tool-desc">Suíte completa para gerenciamento de partições, verificação de saúde do disco e reparo do sistema de arquivos.</div>
+                    <div class="tool-features">Versão "Community" gratuita disponível; mais recursos que o Gerenciamento de Discos nativo do Windows.</div>
+                </div>
+                <a href="https://www.paragon-software.com/free/pm-express/" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="category">
+        <div class="category-header">
+            <h3><i class="fas fa-terminal"></i> Comandos Essenciais do Windows</h3>
+            <span>3 comandos</span>
+        </div>
+        <div class="tools-container">
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-terminal"></i> SFC /scannow
+                    </div>
+                    <div class="tool-desc">Verifica e repara arquivos do sistema Windows corrompidos ou ausentes.</div>
+                    <div class="tool-features">Execute no Prompt de Comando como Administrador. Se falhar, use o DISM em seguida.</div>
+                </div>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-terminal"></i> DISM /Online /Cleanup-Image /RestoreHealth
+                    </div>
+                    <div class="tool-desc">Repara a imagem do sistema Windows, necessário antes do SFC poder funcionar corretamente.</div>
+                    <div class="tool-features">Execute no Prompt de Comando como Administrador. Requer conexão com a internet.</div>
+                </div>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-terminal"></i> Bootrec
+                    </div>
+                    <div class="tool-desc">Repara o registro mestre de inicialização (MBR) e outros problemas de inicialização quando o Windows não inicia.</div>
+                    <div class="tool-features">Usado a partir das Opções de Inicialização Avançadas. Comandos comuns: /fixmbr, /fixboot, /rebuildbcd.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="category">
+        <div class="category-header">
+            <h3><i class="fas fa-sliders-h"></i> Personalização e Ajustes</h3>
+            <span>1 ferramenta</span>
+        </div>
+        <div class="tools-container">
+            <div class="tool">
+                <div class="tool-info">
+                    <div class="tool-name">
+                        <i class="fas fa-star"></i> Winaero Tweaker
+                    </div>
+                    <div class="tool-desc">Aplicativo "tudo-em-um" para ajustar e personalizar configurações no Windows 11, 10, 8 e 7.</div>
+                    <div class="tool-features">Fornece acesso a dezenas de opções ocultas para aparência visual, menus de contexto, desativar telemetria, etc.</div>
+                </div>
+                <a href="https://winaerotweaker.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-external-link-alt"></i> Site Oficial
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tip-box">
+        <h3><i class="fas fa-lightbulb"></i> Dicas de Uso</h3>
+        <p>1. <strong>Identifique o problema primeiro</strong>: PC lento? Use ferramentas de limpeza/desfragmentação. Instável? Tente SFC/DISM. Não inicia? Use Bootrec.</p>
+        <p>2. <strong>Comece com o básico</strong>: Sempre tente as ferramentas integradas do Windows primeiro, como Limpeza de Disco, SFC ou CHKDSK.</p>
+        <p>3. <strong>Use ferramentas especializadas</strong>: Para verificações profundas de hardware, use CPU-Z/GPU-Z/HDD Scan. Para correções avançadas, considere Windows Repair ou Sysinternals.</p>
+        <p>4. <strong>Faça backup primeiro</strong>: Antes de usar ferramentas poderosas de reparo ou registro, crie um Ponto de Restauração do Sistema.</p>
+    </div>
+    
+    <footer>
+        <p>© 2023 Ferramentas de Manutenção do Windows | Esta página é apenas para fins informativos. Use as ferramentas com responsabilidade.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Ícones fornecidos por Font Awesome. Todas as marcas são propriedade de seus respectivos proprietários.</p>
+    </footer>
+</body>
+</html>
